@@ -1,5 +1,7 @@
 package com.sda.json;
 
+import java.util.StringJoiner;
+
 /**
  * @author Juliusz Mueller
  *
@@ -7,9 +9,19 @@ package com.sda.json;
 
 public class Person {
 
-    private String name;
-    private String lastname;
-    private int age;
+    public String name;
+    public String lastname;
+    public int age;
+
+    public Person() {
+
+    }
+
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Person.class.getSimpleName() + "[", "]").add("name='" + name + "'").add("lastname='" + lastname + "'").add("age=" + age).toString();
+    }
 
     public Person(String name, String lastname, int age) {
         this.name = name;
@@ -41,4 +53,7 @@ public class Person {
     public void setAge(int age) {
         this.age = age;
     }
+
+
+
 }

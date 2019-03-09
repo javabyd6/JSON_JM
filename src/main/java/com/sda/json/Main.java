@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,10 +18,12 @@ public class Main {
 
     public static void main(String[] args) {
 
+        File personFile = new File("Person.json");
+
         Person person1 = new Person("Juliusz", "M\u00FCller", 32);
         Person person2 = new Person("Anita", "M\u00FCller", 32);
-        Person person3 = new Person("Marta", "Bolka", 32);
-        Person person4 = new Person("Ala", "Ma Kota", 32);
+        Person person3 = new Person("Marta", "Bolka", 52);
+        Person person4 = new Person("Ala", "Ma Kota", 18);
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -38,10 +41,19 @@ public class Main {
             //  mapper.writeValue(new File("person.json"), person1);
             Files.write(Paths.get("Person.json"), personStr.getBytes());
 
+            Person[] persomArray = mapper.readValue(personFile, Person[].class);
+
+            List<Person> personList = Arrays.asList(persomArray);
+
+            System.out.println(personList.toString());
+
         } catch (IOException e) {
 
             e.printStackTrace();
         }
+
+
+
 
         Address address1 = new Address("Byd", "Warschau 4");
         Address address2 = new Address("Torun", "Chlebowa 433");
@@ -71,6 +83,13 @@ public class Main {
 
         try {
             Files.write(Paths.get("Student.json"), studentStr.getBytes());
+
+            /*Student[] studentArray = mapper.readValue("Student.json",  Student[].class);
+
+            List<Student> studentList = Arrays.asList(studentArray);
+
+            System.out.println(studentList.toString());*/
+
         } catch (IOException e) {
             e.printStackTrace();
         }

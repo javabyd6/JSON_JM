@@ -1,13 +1,18 @@
 package com.sda.json;
 
+import java.util.StringJoiner;
+
 /**
  * @author Juliusz Mueller
  */
 public class Address {
 
 
-    String city;
-    String street;
+    public String city;
+    public String street;
+
+    public Address() {
+    }
 
     public Address(String city, String street) {
         this.city = city;
@@ -28,5 +33,10 @@ public class Address {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Address.class.getSimpleName() + "[", "]").add("city='" + city + "'").add("street='" + street + "'").toString();
     }
 }
