@@ -36,7 +36,7 @@ public class Main {
             String personStr = mapper.writeValueAsString(listapersons);
             System.out.println(personStr);
             //  mapper.writeValue(new File("person.json"), person1);
-            Files.write(Paths.get("person.json"), personStr.getBytes());
+            Files.write(Paths.get("Person.json"), personStr.getBytes());
 
         } catch (IOException e) {
 
