@@ -1,7 +1,6 @@
 package com.sda.readjson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.sda.json.Person;
 
 import java.io.IOException;

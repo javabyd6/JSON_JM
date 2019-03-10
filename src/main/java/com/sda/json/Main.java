@@ -1,6 +1,7 @@
 package com.sda.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -9,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -53,8 +55,6 @@ public class Main {
         }
 
 
-
-
         Address address1 = new Address("Byd", "Warschau 4");
         Address address2 = new Address("Torun", "Chlebowa 433");
         Address address3 = new Address("Lublin", "Woda 56");
@@ -84,6 +84,18 @@ public class Main {
         try {
             Files.write(Paths.get("Student.json"), studentStr.getBytes());
 
+            byte[] jsonData = Files.readAllBytes(Paths.get("Student.json"));
+
+            JsonNode rootNode = mapper.readTree(jsonData);
+            JsonNode idNode = rootNode;
+            System.out.println("Name = "+rootNode);
+
+            Iterator<JsonNode> elements = idNode.elements();
+
+            while(elements.hasNext()){
+                JsonNode name = elements.next();
+                System.out.println("Name = "+ name.get("name"));
+            }
             /*Student[] studentArray = mapper.readValue("Student.json",  Student[].class);
 
             List<Student> studentList = Arrays.asList(studentArray);
